@@ -1,0 +1,81 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+!phantomjs.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.log.*
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Eclipse generated files #
+###########################
+.classpath
+.project
+.checkstyle
+.metadata/
+bin/
+target/
+test-output/
+.settings/
+org.eclipse.jdt.core.prefs
+org.eclipse.wst.common.project.facet.core.xml
+org.eclipse.wst.common.component
+
+# IntelliJ generated files #
+############################
+.idea
+*.iml
+
+# CodeKit Config
+config.codekit
+
+# Folders in repository root for cq5 instances and tools. #
+###########################################################
+author/*
+publish/*
+tools/*
+
+# Java Files #
+##############
+*.class
+*.war
+*.ear
+
+# VLT #
+##############
+.vlt*
+
+# Security
+##############
+*.pem
+
