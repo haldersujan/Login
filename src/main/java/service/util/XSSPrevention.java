@@ -21,7 +21,7 @@ public class XSSPrevention  implements ContainerRequestFilter {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory
-        .getLogger(ReplaceCharacterFilter.class);
+        .getLogger(XSSPrevention.class);
 
     /** The Constant ESCAPE_CHARACTER_MAP. */
     private static final Map<String, String> REPLACE_CHARACTER_MAP =

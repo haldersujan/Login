@@ -11,6 +11,7 @@
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<jersey.version>1.17.1</jersey.version>
 		<jersey.contribs.version>1.8</jersey.contribs.version>
+		<commons.lang.version>3.0</commons.lang.version>
 	</properties>
 	<url>http://maven.apache.org</url>
 	<dependencies>
@@ -106,7 +107,17 @@
                 <artifactId>spring-jms</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-
+            <!-- Utils -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.4</version>
+            </dependency>
 	</dependencies>
 	<build>
 		<finalName>login</finalName>
