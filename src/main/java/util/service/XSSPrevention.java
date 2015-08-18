@@ -1,4 +1,4 @@
-package service.util;
+package util.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
