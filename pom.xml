@@ -12,6 +12,7 @@
 		<jersey.version>1.17.1</jersey.version>
 		<jersey.contribs.version>1.8</jersey.contribs.version>
 		<commons.lang.version>3.0</commons.lang.version>
+		<logback.version>1.0.13</logback.version>
 	</properties>
 	<url>http://maven.apache.org</url>
 	<dependencies>
@@ -21,6 +22,12 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+            <!-- Servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.0.1</version>
+            </dependency>		
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
@@ -118,6 +125,26 @@
                 <artifactId>commons-io</artifactId>
                 <version>2.4</version>
             </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jul-to-slf4j</artifactId>
+                <version>1.7.5</version>
+            </dependency>
+            <dependency>
+              <artifactId>log4j</artifactId>
+              <groupId>log4j</groupId>
+              <version>1.2.14</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>                                    
 	</dependencies>
 	<build>
 		<finalName>login</finalName>

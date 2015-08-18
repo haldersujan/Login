@@ -3,13 +3,13 @@
  */
 package service.login;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @author isapsjd
  *
  */
-@Component
+@Service
 public class LoginServiceImpl implements LoginService{
 
     /**

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"> 
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Application Sign in</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+<!--login modal-->
+<div id="loginModal" class="show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="">
+  <div class="">
+      <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+		  <img class="img-responsive center-block" src="images/blood_drop.png" width="100" height="80">
+          <h2 class="text-center">Sign in</h2>
+      </div>
+      <div class="modal-body">
+          <form class="form col-md-12 center-block">
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" placeholder="UserName" id="username" name="username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input-lg" placeholder="Password" id="password" name="password">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block">Sign In</button><br>
+              <span class="pull-right">New user? <a href="register.html">Register here</a></span><span><a href="#">Forgot password?</a></span>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+         <!--  <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Cancel</button> -->
+		  <a href="index.html" class="btn btn-primary" role="button">Cancel</a>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
+	<!-- script references -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+	
+<script>
+$(document).ready(function() {
+
+    // process the form
+    $('form').submit(function(event) {
+
+		$('#register').prop("disabled",true);
+
+        // get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var formData = {
+			'password':     $('input[name=password]').val(),
+            'username' : $('input[name=username]').val()
+        };
+
+
+        // process the form
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : 'http://localhost:8989/login/rest/customer/login', // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json',//, // what type of data do we expect back from the server
+            contentType: 'application/json',
+            	success: function( data, textStatus, jQxhr ){
+            		window.location.href = 'home.html';
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                    alert(errorThrown);
+                }
+            });
+
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
+
+});
+</script>	
+</html>

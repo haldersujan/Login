@@ -17,6 +17,10 @@
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
             <param-value>true</param-value>
         </init-param>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>resource.login</param-value>
+		</init-param>        
         <!-- Configure jersey logging of request / response(s) -->
         <init-param>
             <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
@@ -31,16 +35,27 @@
         <servlet-name>Jersey</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
-<!-- Spring setup -->
+    
+    <!-- Logback servlet - This URL pattern MUST be restricted in production -->
+    <servlet>
+        <servlet-name>ViewStatusMessages</servlet-name>
+        <servlet-class>ch.qos.logback.classic.ViewStatusMessagesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewStatusMessages</servlet-name>
+        <url-pattern>/lbClassicStatus</url-pattern>
+    </servlet-mapping>
+    
+	<!-- Spring setup -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:*applicationContext.xml</param-value>
+        <param-value>classpath:/appcontext/applicationContext.xml</param-value>
     </context-param>  
     
-        <listener>
+    <listener>
         <listener-class>
             org.springframework.web.context.request.RequestContextListener
         </listener-class>

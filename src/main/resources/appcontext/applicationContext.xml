@@ -22,5 +22,6 @@
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 
-    <context:component-scan base-package="resource.login,service.login,util.service,resource.test" />
+    <context:component-scan base-package="resource.login, service.login, util.service"/>
+
    </beans>

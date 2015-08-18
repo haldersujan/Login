@@ -61,7 +61,7 @@ public class XSSPrevention  implements ContainerRequestFilter {
      */
     public ContainerRequest filter(ContainerRequest request) {
 
-        LOGGER.info("Entering container request filter");
+        LOGGER.debug("Entering container request filter");
 
         try {
             StringWriter writer = new StringWriter();
@@ -87,6 +87,7 @@ public class XSSPrevention  implements ContainerRequestFilter {
      * @return sanitised string
      */
     String sanitiseRequestData(StringWriter writer) {
+    	  LOGGER.debug("Entering sanitiseRequestData");
         String sanitisedData = writer.toString();
         if (!StringUtils.isEmpty(sanitisedData)) {
             LOGGER.trace("Sanitising request data: {}", sanitisedData);
