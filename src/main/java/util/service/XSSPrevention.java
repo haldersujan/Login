@@ -59,7 +59,6 @@ public class XSSPrevention  implements ContainerRequestFilter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public ContainerRequest filter(ContainerRequest request) {
 
         LOGGER.info("Entering container request filter");
