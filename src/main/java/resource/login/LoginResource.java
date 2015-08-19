@@ -47,7 +47,6 @@ public class LoginResource {
 	public Response login(@FormParam("username") String username,
 			@FormParam("password") String password) {
 		LOGGER.debug("Entering login {} , {}", username, password);
-		LOGGER.debug("loginService {} ", loginService);
 
 		boolean validated = loginService.validate(username, password);
 		LoginResponse response = new LoginResponse();

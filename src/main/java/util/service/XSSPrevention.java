@@ -14,8 +14,10 @@ import org.slf4j.LoggerFactory;
 
 import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
+import com.sun.jersey.spi.container.ContainerResponseFilter;
+import com.sun.jersey.spi.container.ResourceFilter;
 
-public class XSSPrevention  implements ContainerRequestFilter {
+public class XSSPrevention implements ContainerRequestFilter, ResourceFilter {
 
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
@@ -33,32 +35,38 @@ public class XSSPrevention  implements ContainerRequestFilter {
         REPLACE_CHARACTER_MAP.put("<", " ");
         REPLACE_CHARACTER_MAP.put("\\u003C", " ");
         REPLACE_CHARACTER_MAP.put("&lt;", " ");
+        REPLACE_CHARACTER_MAP.put("%3C", " ");
 
         REPLACE_CHARACTER_MAP.put(">", " ");
         REPLACE_CHARACTER_MAP.put("\\u003E", " ");
         REPLACE_CHARACTER_MAP.put("&gt;", " ");
+        REPLACE_CHARACTER_MAP.put("%3E"," ");
 
         REPLACE_CHARACTER_MAP.put("(", " ");
         REPLACE_CHARACTER_MAP.put("\\u0028", " ");
         REPLACE_CHARACTER_MAP.put("&#40;", " ");
+        REPLACE_CHARACTER_MAP.put("%28"," ");
 
         REPLACE_CHARACTER_MAP.put(")", " ");
         REPLACE_CHARACTER_MAP.put("\\u0029", " ");
         REPLACE_CHARACTER_MAP.put("&#41;", " ");
+        REPLACE_CHARACTER_MAP.put("%29"," ");
 
         REPLACE_CHARACTER_MAP.put(";", " ");
         REPLACE_CHARACTER_MAP.put("\\u003B", " ");
         REPLACE_CHARACTER_MAP.put("&#59;", " ");
+        REPLACE_CHARACTER_MAP.put("%3B"," ");
 
         REPLACE_CHARACTER_MAP.put("/", " ");
         REPLACE_CHARACTER_MAP.put("\\u002F", " ");
         REPLACE_CHARACTER_MAP.put("&#47;", " ");
-
+        REPLACE_CHARACTER_MAP.put("%2F"," ");
     }
 
     /**
      * {@inheritDoc}
      */
+   
     public ContainerRequest filter(ContainerRequest request) {
 
         LOGGER.debug("Entering container request filter");
@@ -90,15 +98,25 @@ public class XSSPrevention  implements ContainerRequestFilter {
     	  LOGGER.debug("Entering sanitiseRequestData");
         String sanitisedData = writer.toString();
         if (!StringUtils.isEmpty(sanitisedData)) {
-            LOGGER.trace("Sanitising request data: {}", sanitisedData);
+            LOGGER.debug("Sanitising request data: {}", sanitisedData);
             for (String escapeCharacter : REPLACE_CHARACTER_MAP.keySet()) {
                 sanitisedData =
                     sanitisedData.replace(escapeCharacter,
                         REPLACE_CHARACTER_MAP.get(escapeCharacter));
             }
-            LOGGER.trace("Sanitised data: {}", sanitisedData);
+            LOGGER.debug("Sanitised data: {}", sanitisedData);
         }
         return sanitisedData;
     }
+
+	public ContainerRequestFilter getRequestFilter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ContainerResponseFilter getResponseFilter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
