@@ -9,6 +9,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import model.LoginResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,16 +48,15 @@ public class LoginResource {
 			@FormParam("password") String password) {
 		LOGGER.debug("Entering login {} , {}", username, password);
 		LOGGER.debug("loginService {} ", loginService);
-		
+
 		boolean validated = loginService.validate(username, password);
-		if (validated) {
-			return Response.status(200).build();
-		} else {
-			return Response.status(401).build();
-		}
+		LoginResponse response = new LoginResponse();
+		response.setValidated(validated);
+
+		return Response.ok(response).build();
 
 	}
-	
+
 	/**
 	 * Login using standard HTML form post data.
 	 * 
@@ -72,7 +73,7 @@ public class LoginResource {
 	@Path("test")
 	public Response test() {
 		LOGGER.debug("Entering test");
-			return Response.status(200).build();
+		return Response.status(200).build();
 
-	}	
+	}
 }
